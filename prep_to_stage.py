@@ -2,8 +2,19 @@
 
 """
 
-Simple file to search an alien path for specified named file (default=root_archive.zip)
-For each file found, check if it is on selected storage element. 
+script to prepare staging area for file transfers.
+it builds a staging area data directory tree + scripts to
+fill the tree with either soft links or direct copy from xrootd +
+list of files per (run) directory.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --input-file INPUT_FILE
+                        list of files to stage
+  --storage STORAGE     where files are - NFS, local, HPSS
+  --outdir OUTDIR       path to stage area.SHOULD end in *reco*
+  --xrdurl XRDURL       xrootd url (default = root://xrdstar.rcf.bnl.gov:1095//
+
 
 """
 
@@ -34,7 +45,6 @@ class prep_to_stage:
     def __init__(self, args):
         self.args = args
         self.inputfile = args.input_file
-	self.outfile = ".".join([self.inputfile,"sh"])
         self.storage = args.storage
         self.outdir = args.outdir
 	self.xrdurl = args.xrdurl
